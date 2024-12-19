@@ -9,9 +9,9 @@ import { ReportSubmitted } from "./ReportFormCompleted";
 
 export function ReportWizard(){
     const [currentStep, setCurrentStep] = useState(1);
-    const [reportData, setReportData] = useState<any>(null);
+    const [reportData, setReportData] = useState<unknown>(null);
 
-    const handleStepComplete = async (data: any) =>{
+    const handleStepComplete = async (data: unknown) =>{
         setReportData({...reportData, ...data});
 
         if(currentStep === 3){

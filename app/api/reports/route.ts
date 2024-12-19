@@ -50,7 +50,7 @@ export async function GET(req: Request) {
     ]);
 
     return NextResponse.json(reports);
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Failed to fetch reports:", error);
 
     // More specific error messages

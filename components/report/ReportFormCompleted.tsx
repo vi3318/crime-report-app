@@ -1,8 +1,8 @@
 'use client';
 
 interface ReportSubmittedProps{
-    data: any;
-    onComplete: (data: any) => void;
+    data: unknown;
+    onComplete: (data: unknown) => void;
 }
 
 export function ReportSubmitted({data} : ReportSubmittedProps){

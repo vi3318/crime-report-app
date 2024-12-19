@@ -26,7 +26,7 @@ const authOptions: NextAuthOptions = {
           throw new Error("No user found with this email");
         }
 
-        // @ts-ignore: bcryptjs lacks type definitions for `compare`
+        // @ts-expect-error (Reason: bcrypt is a JS library and lacks explicit TS types for `compare`)
         const passwordMatch = await bcrypt.compare(
           credentials.password,
           user.password

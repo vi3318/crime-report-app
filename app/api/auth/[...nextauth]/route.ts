@@ -1,11 +1,10 @@
-//@ts-nocheck
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import prisma from "@/lib/prisma";
 
-const handler = NextAuth({
+const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
@@ -20,15 +19,14 @@ const handler = NextAuth({
         }
 
         const user = await prisma.user.findUnique({
-          where: {
-            email: credentials.email,
-          },
+          where: { email: credentials.email },
         });
 
         if (!user) {
           throw new Error("No user found with this email");
         }
 
+        // @ts-ignore: bcryptjs lacks type definitions for `compare`
         const passwordMatch = await bcrypt.compare(
           credentials.password,
           user.password
@@ -67,6 +65,8 @@ const handler = NextAuth({
   session: {
     strategy: "jwt",
   },
-});
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

@@ -28,7 +28,6 @@ export default function SignIn() {
       } else {
         router.push("/dashboard");
       }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       setError("An error occurred during sign in");
     } finally {

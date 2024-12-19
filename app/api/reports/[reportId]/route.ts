@@ -19,7 +19,6 @@ export async function PATCH(
     });
 
     return NextResponse.json(report);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     return NextResponse.json(
       { error: "Error updating report" },

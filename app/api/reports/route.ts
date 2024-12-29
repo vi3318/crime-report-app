@@ -4,7 +4,6 @@ import { getServerSession } from "next-auth";
 import { ReportStatus, ReportType } from "@prisma/client";
 import prisma from "@/lib/prisma";
 import { authOptions } from "@/lib/auth";
-
 export async function GET(req: Request) {
   try {
     const session = await getServerSession(authOptions);
